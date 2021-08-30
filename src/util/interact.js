@@ -39,7 +39,6 @@ export const connectWallet = async () => {
       status: (
         <span>
           <p>
-            {" "}
             🦊{" "}
             <a
               target="_blank"
@@ -85,7 +84,6 @@ export const getCurrentWalletConnected = async () => {
       status: (
         <span>
           <p>
-            {" "}
             🦊{" "}
             <a
               target="_blank"

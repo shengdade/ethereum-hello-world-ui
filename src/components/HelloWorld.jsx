@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Button, Card, Grid, Input, Message } from "semantic-ui-react";
+import styled from "styled-components";
 import {
   connectWallet,
   getCurrentWalletConnected,
@@ -83,40 +85,56 @@ const HelloWorld = () => {
     setStatus(status);
   };
 
-  //the UI of our component
   return (
-    <div id="container">
-      <button id="walletButton" onClick={connectWalletPressed}>
-        {walletAddress.length > 0 ? (
-          "Connected: " +
-          String(walletAddress).substring(0, 6) +
-          "..." +
-          String(walletAddress).substring(38)
-        ) : (
-          <span>Connect Wallet</span>
-        )}
-      </button>
+    <Wrapper>
+      <Grid>
+        <Grid.Row centered>
+          <Grid.Column width={8}>
+            <Button onClick={connectWalletPressed}>
+              {walletAddress.length > 0 ? (
+                "Connected: " +
+                String(walletAddress).substring(0, 6) +
+                "..." +
+                String(walletAddress).substring(38)
+              ) : (
+                <span>Connect Wallet</span>
+              )}
+            </Button>
 
-      <h2 style={{ paddingTop: "50px" }}>Current Message:</h2>
-      <p>{message}</p>
+            <StyledCard fluid>
+              <Card.Content>
+                <Card.Header>Message</Card.Header>
+                <Card.Description>{message}</Card.Description>
+              </Card.Content>
+            </StyledCard>
 
-      <h2 style={{ paddingTop: "18px" }}>New Message:</h2>
+            <Input
+              fluid
+              type="text"
+              placeholder="Update the message in your smart contract."
+              onChange={(e) => setNewMessage(e.target.value)}
+              value={newMessage}
+              action={
+                <Button id="publish" onClick={onUpdatePressed}>
+                  Update
+                </Button>
+              }
+            />
 
-      <div>
-        <input
-          type="text"
-          placeholder="Update the message in your smart contract."
-          onChange={(e) => setNewMessage(e.target.value)}
-          value={newMessage}
-        />
-        <p id="status">{status}</p>
-
-        <button id="publish" onClick={onUpdatePressed}>
-          Update
-        </button>
-      </div>
-    </div>
+            <Message>{status}</Message>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  margin-top: 4rem;
+`;
+
+const StyledCard = styled(Card)`
+  word-break: break-all;
+`;
 
 export default HelloWorld;
