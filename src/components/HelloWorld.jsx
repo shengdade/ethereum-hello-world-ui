@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import alchemylogo from "./alchemylogo.svg";
 import {
   connectWallet,
   getCurrentWalletConnected,
   helloWorldContract,
   loadCurrentMessage,
   updateMessage,
-} from "./util/interact.js";
+} from "../util/interact.js";
 
 const HelloWorld = () => {
   //state variables
@@ -87,7 +86,6 @@ const HelloWorld = () => {
   //the UI of our component
   return (
     <div id="container">
-      <img id="logo" alt="logo" src={alchemylogo}></img>
       <button id="walletButton" onClick={connectWalletPressed}>
         {walletAddress.length > 0 ? (
           "Connected: " +
