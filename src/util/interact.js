@@ -102,18 +102,20 @@ export const getCurrentWalletConnected = async () => {
 
 export const updateMessage = async (address, message) => {
   //input error handling
-  if (!window.ethereum || address === null) {
+  if (!window.ethereum || !address) {
     return {
       status:
         "💡 Connect your Metamask wallet to update the message on the blockchain.",
     };
   }
 
+  //ensure non-empty message
   if (message.trim() === "") {
     return {
       status: "❌ Your message cannot be an empty string.",
     };
   }
+
   //set up transaction parameters
   const transactionParameters = {
     to: contractAddress, // Required except during contract publications.

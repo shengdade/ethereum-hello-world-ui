@@ -2,7 +2,7 @@ import HelloWorld from "./HelloWorld";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <HelloWorld />
     </div>
   );
